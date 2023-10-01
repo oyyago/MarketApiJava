@@ -18,13 +18,12 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-
-
     public void updateProduct(String productId, ProductRequest productRequest) {
         Optional<ProductModel> optionalProduct = productRepository.findById(productId);
         if (optionalProduct.isPresent()) {
             ProductModel productModel = optionalProduct.get();
-            productModel = ProductModel.builder()
+            productModel = ProductModel.builder().
+                    product_id(productModel.getProduct_id())
                     .product_name(productRequest.getProduct_name())
                     .unit_price(productRequest.getUnit_price())
                     .supplier_id(productRequest.getSupplier_id())

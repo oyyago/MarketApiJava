@@ -20,8 +20,7 @@ public class ProductModel implements Serializable {
     @Column(name = "product_id")
     private String product_id;
     private String product_name;
-    @NotNull(message = "unit_price is required")
-    private Float unit_price;
+    private String unit_price;
     private int supplier_id;
     private int category_id;
     private int stock;

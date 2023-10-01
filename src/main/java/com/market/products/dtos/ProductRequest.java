@@ -14,8 +14,7 @@ import lombok.NoArgsConstructor;
 public class ProductRequest {
     private @NotNull String product_id;
     private @NotBlank String product_name;
-    @NotNull(message = "unit_price is required")
-    private Float unit_price;
+    private String unit_price;
     private int supplier_id;
     private int category_id;
     private @NotNull int stock;
