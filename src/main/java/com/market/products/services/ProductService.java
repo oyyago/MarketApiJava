@@ -1,5 +1,6 @@
 package com.market.products.services;
 
+import com.market.products.exceptions.ProductNotFoundException;
 import com.market.products.dtos.ProductRequest;
 import com.market.products.dtos.ProductsResponse;
 import com.market.products.models.ProductModel;
@@ -62,6 +63,14 @@ public class ProductService {
                 .map(this::mapToProductResponse)
                 .collect(Collectors.toList());
     }
+    public List<ProductsResponse> getOneProduct(String productId) {
+        Optional<ProductModel> product = productRepository.findById(productId);
+        if(product.isEmpty()){
+            throw new ProductNotFoundException(productId);
+        }
+        return product.stream().map(this::mapToProductResponse).toList();
+    }
+
 
     public List<ProductsResponse> getAllProducts() {
         List<ProductModel> products = productRepository.findAll();

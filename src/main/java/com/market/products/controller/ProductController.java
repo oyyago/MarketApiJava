@@ -2,6 +2,7 @@
 
     import com.market.products.dtos.ProductRequest;
     import com.market.products.dtos.ProductsResponse;
+    import com.market.products.exceptions.ProductNotFoundException;
     import com.market.products.services.ProductService;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.HttpStatus;
@@ -13,7 +14,6 @@
     @RestController
     @RequestMapping("/products")
     public class ProductController {
-
         private final ProductService productService;
 
         @Autowired
@@ -29,7 +29,7 @@
         }
 
             @PutMapping("/{productId}")
-        public ResponseEntity<Void> updateProduct(@PathVariable String productId, @RequestBody ProductRequest productRequest) {
+            public ResponseEntity<Void> updateProduct(@PathVariable String productId, @RequestBody ProductRequest productRequest) {
                 productService.updateProduct(productId, productRequest);
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -38,6 +38,10 @@
         @ResponseStatus(HttpStatus.CREATED)
         public void createProduct(@RequestBody ProductRequest productRequest){
             productService.createProduct(productRequest);
+        }
+        @GetMapping("/{productId}")
+        public List<ProductsResponse> getOneProduct(@PathVariable String productId) {
+            return productService.getOneProduct(productId);
         }
 
         @GetMapping
