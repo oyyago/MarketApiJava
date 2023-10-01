@@ -27,13 +27,11 @@
             ResponseEntity<String> response = productService.deleteProduct(productId);
             return response;
         }
-
             @PutMapping("/{productId}")
             public ResponseEntity<Void> updateProduct(@PathVariable String productId, @RequestBody ProductRequest productRequest) {
                 productService.updateProduct(productId, productRequest);
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         @PostMapping
         @ResponseStatus(HttpStatus.CREATED)
         public void createProduct(@RequestBody ProductRequest productRequest){

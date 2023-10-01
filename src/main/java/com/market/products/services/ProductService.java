@@ -71,7 +71,6 @@ public class ProductService {
         return product.stream().map(this::mapToProductResponse).toList();
     }
 
-
     public List<ProductsResponse> getAllProducts() {
         List<ProductModel> products = productRepository.findAll();
         return products.stream().map(this::mapToProductResponse).toList();
