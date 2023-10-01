@@ -1,43 +1,48 @@
-package com.market.products.controller;
+    package com.market.products.controller;
 
-import com.market.products.dtos.ProductRequest;
-import com.market.products.dtos.ProductsResponse;
-import com.market.products.services.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+    import com.market.products.dtos.ProductRequest;
+    import com.market.products.dtos.ProductsResponse;
+    import com.market.products.services.ProductService;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+    import java.util.List;
 
-@RestController
-@RequestMapping("/products")
-public class ProductController {
+    @RestController
+    @RequestMapping("/products")
+    public class ProductController {
 
-    private final ProductService productService;
+        private final ProductService productService;
 
-    @Autowired
-    public  ProductController(ProductService productService){
-        this.productService = productService;
+        @Autowired
+        public  ProductController(ProductService productService){
+            this.productService = productService;
+        }
+
+
+        @DeleteMapping("/{productId}")
+        public ResponseEntity<String> deleteProduct(@PathVariable String productId) {
+            ResponseEntity<String> response = productService.deleteProduct(productId);
+            return response;
+        }
+
+            @PutMapping("/{productId}")
+        public ResponseEntity<Void> updateProduct(@PathVariable String productId, @RequestBody ProductRequest productRequest) {
+                productService.updateProduct(productId, productRequest);
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        @PostMapping
+        @ResponseStatus(HttpStatus.CREATED)
+        public void createProduct(@RequestBody ProductRequest productRequest){
+            productService.createProduct(productRequest);
+        }
+
+        @GetMapping
+        @ResponseStatus(HttpStatus.OK)
+        public List<ProductsResponse> getAllProducts(){
+            return productService.getAllProducts();
+        }
     }
-
-    @PutMapping("/{productId}")
-    public ResponseEntity<Void> updateProduct(@PathVariable String productId, @RequestBody ProductRequest productRequest) {
-            productService.updateProduct(productId, productRequest);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createProduct(@RequestBody ProductRequest productRequest){
-        productService.createProduct(productRequest);
-    }
-
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<ProductsResponse> getAllProducts(){
-        return productService.getAllProducts();
-    }
-
-
-}
