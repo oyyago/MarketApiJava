@@ -2,14 +2,13 @@
 
     import com.market.products.dtos.ProductRequest;
     import com.market.products.dtos.ProductsResponse;
-    import com.market.products.exceptions.ProductNotFoundException;
     import com.market.products.services.ProductService;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.HttpStatus;
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
-
     import java.util.List;
+
 
     @RestController
     @RequestMapping("/products")
@@ -20,7 +19,6 @@
         public  ProductController(ProductService productService){
             this.productService = productService;
         }
-
 
         @DeleteMapping("/{productId}")
         public ResponseEntity<String> deleteProduct(@PathVariable String productId) {
