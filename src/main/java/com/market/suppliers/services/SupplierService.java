@@ -19,7 +19,7 @@ public class SupplierService {
         this.supplierRepository = supplierRepository;
     }
 
-    public ResponseEntity<String> deleteSupplier(String supplierId) {
+    public ResponseEntity<String> deleteSupplier(Integer supplierId) {
         Optional<SuppliersModel> suOptional = supplierRepository.findById(supplierId);
         if (suOptional.isPresent()) {
             SuppliersModel suppliersModel = suOptional.get();
@@ -30,7 +30,7 @@ public class SupplierService {
         }
     }
 
-    public void updateSupplier(String supplierId, SuppliersDto suppliersDto) {
+    public void updateSupplier(Integer supplierId, SuppliersDto suppliersDto) {
         Optional<SuppliersModel> optionalSupplier = supplierRepository.findById(supplierId);
         if (optionalSupplier.isPresent()) {
             SuppliersModel suppliersModel = optionalSupplier.get();
@@ -54,7 +54,7 @@ public class SupplierService {
         supplierRepository.save(suppliersModel);
     }
 
-    public List<SuppliersDto> getOneSupplier(String supplierId) {
+    public List<SuppliersDto> getOneSupplier(Integer supplierId) {
         Optional<SuppliersModel> supplier = supplierRepository.findById(supplierId);
         if(supplier.isEmpty()){
             throw new SupplierNotFoundException(supplierId);

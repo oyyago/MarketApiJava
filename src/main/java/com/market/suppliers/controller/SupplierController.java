@@ -23,13 +23,13 @@ import java.util.List;
 
 
         @DeleteMapping("/{supplierId}")
-        public ResponseEntity<String> deleteSupplier(@PathVariable String supplierId) {
+        public ResponseEntity<String> deleteSupplier(@PathVariable Integer supplierId) {
             ResponseEntity<String> response = supplierService.deleteSupplier(supplierId);
             return response;
         }
 
         @PutMapping("/{supplierId}")
-            public ResponseEntity<Void> updateSupplier(@PathVariable String supplierId, @RequestBody SuppliersDto suppliersDto) {
+            public ResponseEntity<Void> updateSupplier(@PathVariable Integer supplierId, @RequestBody SuppliersDto suppliersDto) {
                 supplierService.updateSupplier(supplierId, suppliersDto);
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -40,7 +40,7 @@ import java.util.List;
             supplierService.createSupplier(suppliersDto);
         }
         @GetMapping("/{supplierId}")
-        public List<SuppliersDto> getOneSupplier(@PathVariable String supplierId) {
+        public List<SuppliersDto> getOneSupplier(@PathVariable Integer supplierId) {
             return supplierService.getOneSupplier(supplierId);
         }
 
