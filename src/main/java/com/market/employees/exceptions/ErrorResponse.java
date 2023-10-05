@@ -1,4 +1,4 @@
-package com.market.suppliers.exceptions;
+package com.market.employees.exceptions;
 
 public class ErrorResponse {
     private String message;

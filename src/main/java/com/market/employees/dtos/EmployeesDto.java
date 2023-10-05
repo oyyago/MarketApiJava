@@ -1,4 +1,4 @@
-package com.market.suppliers.dtos;
+package com.market.employees.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SuppliersDto {
-    @NotNull Integer supplier_id;
+public class EmployeesDto {
+    @NotNull Integer employee_id;
     @NotNull String name;
     @NotNull String phone;
     @NotNull String email;
+    @NotNull String position;
+    @NotNull String hourly_rate;
+    @NotNull String hire_date;
 }
