@@ -24,3 +24,4 @@ public class ProductModel implements Serializable {
     private int category_id;
     private int stock;
 }
+
