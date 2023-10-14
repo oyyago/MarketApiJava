@@ -20,7 +20,7 @@ public class ProductService {
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-    public ResponseEntity<String> deleteProduct(String productId) {
+    public ResponseEntity<String> deleteProduct(Integer productId) {
         Optional<ProductModel> productOptional = productRepository.findById(productId);
         if (productOptional.isPresent()) {
             ProductModel productModel = productOptional.get();
@@ -30,16 +30,16 @@ public class ProductService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found.");
         }
     }
-    public void updateProduct(String productId, ProductRequest productRequest) {
+    public void updateProduct(Integer productId, ProductRequest productRequest) {
         Optional<ProductModel> optionalProduct = productRepository.findById(productId);
         if (optionalProduct.isPresent()) {
             ProductModel productModel = optionalProduct.get();
             productModel = ProductModel.builder( ).
-                    product_id(productModel.getProduct_id())
-                    .product_name(productRequest.getProduct_name())
-                    .unit_price(productRequest.getUnit_price())
-                    .supplier_id(productRequest.getSupplier_id())
-                    .category_id(productRequest.getCategory_id())
+                    productId(productModel.getProductId())
+                    .productName(productRequest.getProductName())
+                    .unitPrice(productRequest.getUnitPrice())
+                    .supplierId(productRequest.getSupplierId())
+                    .categoryId(productRequest.getCategoryId())
                     .stock(productRequest.getStock())
                     .build();
             productRepository.save(productModel);
@@ -48,11 +48,11 @@ public class ProductService {
 
     public void createProduct(ProductRequest productRequest){
         ProductModel productModel = ProductModel.builder().
-                product_id(productRequest.getProduct_id()).
-                product_name(productRequest.getProduct_name()).
-                unit_price(productRequest.getUnit_price()).
-                supplier_id(productRequest.getSupplier_id()).
-                category_id(productRequest.getCategory_id()).
+                productId(productRequest.getProductId()).
+                productName(productRequest.getProductName()).
+                unitPrice(productRequest.getUnitPrice()).
+                supplierId(productRequest.getSupplierId()).
+                categoryId(productRequest.getCategoryId()).
                 stock(productRequest.getStock()).
                 build();
         productRepository.save(productModel);
@@ -63,7 +63,7 @@ public class ProductService {
                 .map(this::mapToProductResponse)
                 .collect(Collectors.toList());
     }
-    public List<ProductsResponse> getOneProduct(String productId) {
+    public List<ProductsResponse> getOneProduct(Integer productId) {
         Optional<ProductModel> product = productRepository.findById(productId);
         if(product.isEmpty()){
             throw new ProductNotFoundException(productId);
@@ -77,11 +77,11 @@ public class ProductService {
     }
     public ProductsResponse mapToProductResponse(ProductModel product){
         return ProductsResponse.builder().
-                productId(product.getProduct_id()).
-                product_name(product.getProduct_name()).
-                unit_price(product.getUnit_price()).
-                supplier_id(product.getSupplier_id()).
-                category_id(product.getCategory_id()).
+                productId(product.getProductId()).
+                productName(product.getProductName()).
+                unitPrice(product.getUnitPrice()).
+                supplierId(product.getSupplierId()).
+                categoryId(product.getCategoryId()).
                 stock(product.getStock()).
                 build();
     }

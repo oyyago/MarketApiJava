@@ -17,11 +17,13 @@ public class EmployeesModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
-    private Integer employee_id;
+    private Integer employeeId;
     private String name;
     private String phone;
     private String email;
     private String position;
-    private String hourly_rate;
-    private String hire_date;
+    @Column(name = "hourly_rate")
+    private String hourlyRate;
+    @Column(name = "hire_date")
+    private String hireDate;
 }

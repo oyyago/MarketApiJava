@@ -21,12 +21,12 @@
         }
 
         @DeleteMapping("/{productId}")
-        public ResponseEntity<String> deleteProduct(@PathVariable String productId) {
+        public ResponseEntity<String> deleteProduct(@PathVariable Integer productId) {
             ResponseEntity<String> response = productService.deleteProduct(productId);
             return response;
         }
             @PutMapping("/{productId}")
-            public ResponseEntity<Void> updateProduct(@PathVariable String productId, @RequestBody ProductRequest productRequest) {
+            public ResponseEntity<Void> updateProduct(@PathVariable Integer productId, @RequestBody ProductRequest productRequest) {
                 productService.updateProduct(productId, productRequest);
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -36,7 +36,7 @@
             productService.createProduct(productRequest);
         }
         @GetMapping("/{productId}")
-        public List<ProductsResponse> getOneProduct(@PathVariable String productId) {
+        public List<ProductsResponse> getOneProduct(@PathVariable Integer productId) {
             return productService.getOneProduct(productId);
         }
 

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SuppliersDto {
-    @NotNull Integer supplier_id;
+    @NotNull Integer supplierId;
     @NotNull String name;
     @NotNull String phone;
     @NotNull String email;

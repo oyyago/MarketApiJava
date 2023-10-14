@@ -31,13 +31,13 @@ public class EmployeesService {
         if (optionalEmployeer.isPresent()) {
             EmployeesModel employeesModel = optionalEmployeer.get();
             employeesModel = EmployeesModel.builder( ).
-                    employee_id(employeesModel.getEmployee_id())
+                    employeeId(employeesModel.getEmployeeId())
                     .name(employeesDto.getName())
                     .phone(employeesDto.getPhone())
                     .email(employeesDto.getEmail())
                     .position(employeesDto.getPosition())
-                    .hourly_rate(employeesDto.getHourly_rate())
-                    .hire_date(employeesDto.getHire_date())
+                    .hourlyRate(employeesDto.getHourlyRate())
+                    .hireDate(employeesDto.getHireDate())
                     .build();
             employeesRepository.save(employeesModel);
         }
@@ -45,13 +45,13 @@ public class EmployeesService {
 
     public void createEmployeer(EmployeesDto employeesDto){
         EmployeesModel employeesModel = EmployeesModel.builder().
-                employee_id(employeesDto.getEmployee_id())
+                employeeId(employeesDto.getEmployeeId())
                 .name(employeesDto.getName())
                 .phone(employeesDto.getPhone())
                 .email(employeesDto.getEmail())
                 .position(employeesDto.getPosition())
-                .hourly_rate(employeesDto.getHourly_rate())
-                .hire_date(employeesDto.getHire_date())
+                .hourlyRate(employeesDto.getHourlyRate())
+                .hireDate(employeesDto.getHireDate())
                 .build();
         employeesRepository.save(employeesModel);
     }
@@ -70,13 +70,13 @@ public class EmployeesService {
 
     public EmployeesDto mapToEmployeesResponse(EmployeesModel employeer){
         return EmployeesDto.builder().
-                employee_id(employeer.getEmployee_id())
+                employeeId(employeer.getEmployeeId())
                 .name(employeer.getName())
                 .phone(employeer.getPhone())
                 .email(employeer.getEmail())
                 .position(employeer.getPosition())
-                .hourly_rate(employeer.getHourly_rate())
-                .hire_date(employeer.getHire_date())
+                .hourlyRate(employeer.getHourlyRate())
+                .hireDate(employeer.getHireDate())
                 .build();
     }
 }

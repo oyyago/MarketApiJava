@@ -17,7 +17,7 @@ public class SuppliersModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "supplier_id")
-    private Integer supplier_id;
+    private Integer supplierId;
     private String name;
     private String phone;
     private String email;

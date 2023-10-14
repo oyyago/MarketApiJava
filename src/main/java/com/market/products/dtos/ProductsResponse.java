@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductsResponse{
-    String productId;
-    String product_name;
-    private String unit_price;
-    int supplier_id;
-    int category_id;
+    Integer productId;
+    String productName;
+    String unitPrice;
+    int supplierId;
+    int categoryId;
     int stock;
 }

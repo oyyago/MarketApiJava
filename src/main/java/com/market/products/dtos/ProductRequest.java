@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductRequest {
-    private @NotNull String product_id;
-    private @NotBlank String product_name;
-    private String unit_price;
-    private int supplier_id;
-    private int category_id;
+    private @NotNull Integer productId;
+    private @NotBlank String productName;
+    private String unitPrice;
+    private int supplierId;
+    private int categoryId;
     private @NotNull int stock;
 }

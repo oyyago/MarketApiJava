@@ -17,6 +17,8 @@ import jakarta.persistence.*;
 public class CategoriesModel extends RepresentationModel<CategoriesModel> implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer category_id;
-	private String category_name;
+	@Column(name = "category_id")
+	private Integer categoryId;
+	@Column(name = "category_name")
+	private String categoryName;
 }

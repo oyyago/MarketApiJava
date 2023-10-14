@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeesDto {
-    @NotNull Integer employee_id;
+    @NotNull Integer employeeId;
     @NotNull String name;
     @NotNull String phone;
     @NotNull String email;
     @NotNull String position;
-    @NotNull String hourly_rate;
-    @NotNull String hire_date;
+    @NotNull String hourlyRate;
+    @NotNull String hireDate;
 }

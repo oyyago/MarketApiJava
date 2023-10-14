@@ -35,7 +35,7 @@ public class SupplierService {
         if (optionalSupplier.isPresent()) {
             SuppliersModel suppliersModel = optionalSupplier.get();
             suppliersModel = SuppliersModel.builder( ).
-                    supplier_id(suppliersModel.getSupplier_id())
+                    supplierId(suppliersModel.getSupplierId())
                     .name(suppliersDto.getName())
                     .phone(suppliersDto.getPhone())
                     .email(suppliersDto.getEmail())
@@ -46,7 +46,7 @@ public class SupplierService {
 
     public void createSupplier(SuppliersDto suppliersDto){
         SuppliersModel suppliersModel = SuppliersModel.builder().
-                supplier_id(suppliersDto.getSupplier_id()).
+                supplierId(suppliersDto.getSupplierId()).
                 name(suppliersDto.getName()).
                 phone(suppliersDto.getPhone()).
                 email(suppliersDto.getEmail()).
@@ -69,7 +69,7 @@ public class SupplierService {
 
     public SuppliersDto mapToSuppliersResponse(SuppliersModel supplier){
         return SuppliersDto.builder().
-                supplier_id(supplier.getSupplier_id()).
+                supplierId(supplier.getSupplierId()).
                 name(supplier.getName()).
                 phone(supplier.getPhone()).
                 email(supplier.getEmail()).
