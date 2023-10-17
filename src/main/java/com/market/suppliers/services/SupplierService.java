@@ -1,5 +1,6 @@
 package com.market.suppliers.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.market.suppliers.dtos.SuppliersDto;
 import com.market.suppliers.exceptions.SupplierNotFoundException;
 import com.market.suppliers.models.SuppliersModel;
@@ -8,7 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -19,16 +23,17 @@ public class SupplierService {
         this.supplierRepository = supplierRepository;
     }
 
-    public ResponseEntity<String> deleteSupplier(Integer supplierId) {
+    public String deleteSupplier(Integer supplierId) {
         Optional<SuppliersModel> suOptional = supplierRepository.findById(supplierId);
         if (suOptional.isPresent()) {
             SuppliersModel suppliersModel = suOptional.get();
             supplierRepository.delete(suppliersModel);
-            return ResponseEntity.ok("Supplier deletd with sucess.");
+            return "Supplier deleted with success.";
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Supplier not found.");
+            return "Supplier not found.";
         }
     }
+
 
     public void updateSupplier(Integer supplierId, SuppliersDto suppliersDto) {
         Optional<SuppliersModel> optionalSupplier = supplierRepository.findById(supplierId);

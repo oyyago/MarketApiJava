@@ -23,7 +23,7 @@
         @DeleteMapping("/{productId}")
         public ResponseEntity<String> deleteProduct(@PathVariable Integer productId) {
             ResponseEntity<String> response = productService.deleteProduct(productId);
-            return response;
+            return new ResponseEntity<>(HttpStatus.OK);
         }
             @PutMapping("/{productId}")
             public ResponseEntity<Void> updateProduct(@PathVariable Integer productId, @RequestBody ProductRequest productRequest) {
