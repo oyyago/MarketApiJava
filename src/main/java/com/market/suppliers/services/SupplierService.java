@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-@RequestMapping("/suppliers")
 public class SupplierService {
     private final SupplierRepository supplierRepository;
     public SupplierService(SupplierRepository supplierRepository) {
@@ -33,7 +32,6 @@ public class SupplierService {
             return "Supplier not found.";
         }
     }
-
 
     public void updateSupplier(Integer supplierId, SuppliersDto suppliersDto) {
         Optional<SuppliersModel> optionalSupplier = supplierRepository.findById(supplierId);
@@ -59,7 +57,7 @@ public class SupplierService {
         supplierRepository.save(suppliersModel);
     }
 
-    public List<SuppliersDto> getOneSupplier(Integer supplierId) {
+    public List<SuppliersDto> getOneSupplier( Integer supplierId) {
         Optional<SuppliersModel> supplier = supplierRepository.findById(supplierId);
         if(supplier.isEmpty()){
             throw new SupplierNotFoundException(supplierId);

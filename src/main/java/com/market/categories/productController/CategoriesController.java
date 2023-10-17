@@ -6,6 +6,7 @@ import com.market.categories.models.CategoriesModel;
 import com.market.categories.productRepository.CategoriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +18,13 @@ public class CategoriesController {
     @Autowired
     CategoriesRepository categoriesRepository;
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CategoriesModel>> getAllCategories(){
 		List<CategoriesModel> categoriesList = categoriesRepository.findAll();
 		return ResponseEntity.status(HttpStatus.OK).body(categoriesList);
 	}
 
-    @GetMapping("{categoryId}")
+    @GetMapping(value = "{categoryId}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getOneCategory(@PathVariable(value = "categoryId") Integer categoryId) {
         Optional<CategoriesModel> category = categoriesRepository.findById(categoryId);
         if (category.isEmpty()) {

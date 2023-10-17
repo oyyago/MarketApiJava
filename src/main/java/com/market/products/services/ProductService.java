@@ -14,7 +14,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@RequestMapping("/products")
 public class ProductService {
     private final ProductRepository productRepository;
     public ProductService(ProductRepository productRepository) {

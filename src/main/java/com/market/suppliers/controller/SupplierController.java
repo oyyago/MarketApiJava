@@ -3,6 +3,7 @@ package com.market.suppliers.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,39 +24,33 @@ public class SupplierController {
         this.supplierService = supplierService;
     }
 
-    @DeleteMapping("/{supplierId}")
+    @DeleteMapping(value = "/{supplierId}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> deleteSupplier(@PathVariable Integer supplierId) {
         String message = supplierService.deleteSupplier(supplierId);
-        Map<String, String> response = new HashMap<>();
-        response.put("message", message);
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            String jsonResponse = objectMapper.writeValueAsString(response);
-            return ResponseEntity.ok(jsonResponse);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error converting to JSON");
-        }
+        return  ResponseEntity.noContent().build();
     }
     
-    @PutMapping("/{supplierId}")
+    @PutMapping(value = "/{supplierId}", produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<Void> updateSupplier(@PathVariable Integer supplierId,
             @RequestBody SuppliersDto suppliersDto) {
         supplierService.updateSupplier(supplierId, suppliersDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE )
     @ResponseStatus(HttpStatus.CREATED)
     public void createSupplier(@RequestBody SuppliersDto suppliersDto) {
         supplierService.createSupplier(suppliersDto);
     }
 
-    @GetMapping("/{supplierId}")
-    public List<SuppliersDto> getOneSupplier(@PathVariable Integer supplierId) {
+    @GetMapping(value="/{supplierId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<SuppliersDto> getOneSupplier( @PathVariable Integer supplierId) {
         return supplierService.getOneSupplier(supplierId);
     }
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<SuppliersDto> getAllSuppliers() {
         return supplierService.getAllSuppliers();

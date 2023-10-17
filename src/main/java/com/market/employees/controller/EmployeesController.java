@@ -5,6 +5,7 @@
     import com.market.employees.services.EmployeesService;
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.http.HttpStatus;
+    import org.springframework.http.MediaType;
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
@@ -20,28 +21,30 @@
             this.employeesService = employeesService;
         }
 
-        @DeleteMapping("/{employeeId}")
+        @DeleteMapping(value = "/{employeeId}",produces = MediaType.APPLICATION_JSON_VALUE)
         public ResponseEntity<String> deleteEmployee(@PathVariable Integer employeeId) {
-            ResponseEntity<String> response = employeesService.deleteEmployer(employeeId);
-            return response;
+            employeesService.deleteEmployer(employeeId);
+            return ResponseEntity.noContent().build();
         }
 
-        @PutMapping("/{employeeId}")
+        @PutMapping(value = "/{employeeId}",produces = MediaType.APPLICATION_JSON_VALUE,
+                consumes = MediaType.APPLICATION_JSON_VALUE )
             public ResponseEntity<Void> updateEmployee(@PathVariable Integer employeeId, @RequestBody EmployeesDto employeesDto) {
                 employeesService.updateEmployeer(employeeId, employeesDto);
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        @PostMapping
+        @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+                consumes = MediaType.APPLICATION_JSON_VALUE )
         @ResponseStatus(HttpStatus.CREATED)
         public void createEmployeer(@RequestBody EmployeesDto employeesDto){
             employeesService.createEmployeer(employeesDto);
         }
-        @GetMapping("/{employeerId}")
+        @GetMapping(value = "/{employeerId}",produces = MediaType.APPLICATION_JSON_VALUE)
         public List<EmployeesDto> getOneEmployeer(@PathVariable Integer employeerId) {
             return employeesService.getOneEmployeer(employeerId);
         }
 
-        @GetMapping
+        @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
         @ResponseStatus(HttpStatus.OK)
         public List<EmployeesDto> getAllEmployees(){
             return employeesService.getAllEmployees();
